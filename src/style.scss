@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  cursor: none;
+  user-select: none;
+  .cursor {
+    position: fixed;
+    will-change: transform;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgb(12, 12, 49);
+    z-index: 1000000;
+    margin: -10px 0 0 -10px;
+  }
+  .shapes {
+    width: 100vw;
+    height: 100vh;
+    background: coral;
+    position: relative;
+    overflow: hidden;
+    .shape {
+      will-change: transform;
+      position: absolute;
+      border-radius: 50%;
+
+      $shapes: (
+        red: 650px,
+        blue: 440px,
+        orange: 270px,
+      );
+
+      @each $color, $size in $shapes {
+        &.shape#{index($shapes, ($color $size))} {
+          background: $color;
+          width: $size;
+          height: $size;
+          margin: (-$size/2) 0 0 (-$size/2);
+        }
+      }
+    }
+  }
+  .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    mix-blend-mode: screen;
+  }
+}
